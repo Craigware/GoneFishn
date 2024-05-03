@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RodResource" load_steps=2 format=3 uid="uid://ckykopj4hxygl"]
+
+[ext_resource type="Script" path="res://Scripts/Models/RodResource.cs" id="1_0ei8u"]
+
+[resource]
+script = ExtResource("1_0ei8u")
+FishSizes = null
+RodDepth = null
+Durrability = 0
+Name = ""
+Description = ""
+BuyCost = 0

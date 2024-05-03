@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c385no1sdh8yl"]
+[gd_scene load_steps=4 format=3 uid="uid://c385no1sdh8yl"]
+
+[ext_resource type="Script" path="res://Scripts/Controllers/Player.cs" id="1_5436m"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_j8e1b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g62ch"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 16
+script = ExtResource("1_5436m")
 
 [node name="GFX" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -13,3 +17,18 @@ mesh = SubResource("CapsuleMesh_j8e1b")
 [node name="CollisionBox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_g62ch")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 5, 6)
+
+[node name="GroundCheck" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, -1.1, 0)
+
+[node name="InteractCheck" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, -1)
+collide_with_areas = true
+collide_with_bodies = false
