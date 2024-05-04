@@ -3,9 +3,17 @@ using Items;
 
 namespace Tools 
 {
+    public enum RodCategory
+    {
+        FRESH,
+        BRACKISH,
+        SALT
+    }
+
     [GlobalClass]
     public partial class RodResource : ToolResource
     {
+        [Export] public RodCategory RodCategory;
         [Export] public Godot.Collections.Array<Fish.Size> FishSizes;
         [Export] public Godot.Collections.Array<Fish.WaterColumnLocation> RodDepth;
 
@@ -15,10 +23,12 @@ namespace Tools
             int buyCost,
             int durrability,
             Godot.Collections.Array<Fish.Size> fishSizes,
-            Godot.Collections.Array<Fish.WaterColumnLocation> rodDepth) : base(name, description, buyCost, durrability)
+            Godot.Collections.Array<Fish.WaterColumnLocation> rodDepth,
+            RodCategory rodCategory) : base(name, description, buyCost, durrability)
         {
             FishSizes = fishSizes;
             RodDepth = rodDepth;
+            RodCategory = rodCategory;
         }
     }
 }

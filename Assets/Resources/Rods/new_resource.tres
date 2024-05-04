@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_0ei8u")
+RodCategory = 0
 FishSizes = null
 RodDepth = null
 Durrability = 0

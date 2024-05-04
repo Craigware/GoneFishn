@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Fish" load_steps=2 format=3 uid="uid://bq57b71n6jl21"]
+
+[ext_resource type="Script" path="res://Scripts/Models/Fish.cs" id="1_vu3so"]
+
+[resource]
+script = ExtResource("1_vu3so")
+Habitat = 1
+DepthFound = 1
+Size = 3
+Name = "Grouper"
+Description = ""
+BuyCost = 0
+SellCost = 0

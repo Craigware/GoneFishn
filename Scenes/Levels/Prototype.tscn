@@ -1,10 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://cd6d5k6ppdgft"]
+[gd_scene load_steps=19 format=3 uid="uid://cd6d5k6ppdgft"]
 
 [ext_resource type="PackedScene" uid="uid://c385no1sdh8yl" path="res://Scenes/Components/Player.tscn" id="1_ke17u"]
 [ext_resource type="Material" uid="uid://c4ymyq18mksjq" path="res://Assets/Materials/Green.tres" id="2_1knkb"]
 [ext_resource type="Script" path="res://Scripts/Managers/FPS.cs" id="2_h2cu7"]
 [ext_resource type="Material" uid="uid://i58w6155caxw" path="res://Assets/Materials/Blue.tres" id="2_s808y"]
 [ext_resource type="Script" path="res://Scripts/Managers/FishingZone.cs" id="5_63ygk"]
+[ext_resource type="Resource" uid="uid://badx58ik2j50s" path="res://Assets/Resources/Fish/Freshwater/Pike.tres" id="6_156o5"]
+[ext_resource type="Resource" uid="uid://dpcu0j8d18hmq" path="res://Assets/Resources/Fish/Saltwater/Blobfish.tres" id="7_gy6mf"]
+[ext_resource type="Resource" uid="uid://bq57b71n6jl21" path="res://Assets/Resources/Fish/Saltwater/Grouper.tres" id="8_uv3l6"]
+[ext_resource type="Resource" uid="uid://d1vxkox4prcy8" path="res://Assets/Resources/Fish/Saltwater/Marlin.tres" id="9_o646x"]
+[ext_resource type="Resource" uid="uid://cwqt3tbi6gi0f" path="res://Assets/Resources/Fish/Brackish/RainbowTrout.tres" id="10_gjkgr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ya5e2"]
 
@@ -120,8 +125,9 @@ grow_horizontal = 2
 script = ExtResource("2_h2cu7")
 
 [node name="StaticBody3D" type="Area3D" parent="."]
-transform = Transform3D(4.53222, 0, 0, 0, 4.53222, 0, 0, 0, 4.53222, -2.78965, 0.467411, -3.96461)
+transform = Transform3D(4.53222, 0, 0, 0, 4.53222, 0, 0, 0, 4.53222, -5.78965, 0.467411, -3.96461)
 script = ExtResource("5_63ygk")
+AvaiableFish = Array[Object]([ExtResource("6_156o5"), ExtResource("7_gy6mf"), ExtResource("8_uv3l6"), ExtResource("9_o646x"), ExtResource("10_gjkgr")])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("BoxMesh_in8vp")

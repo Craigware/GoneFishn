@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Fish" load_steps=2 format=3 uid="uid://dpcu0j8d18hmq"]
+
+[ext_resource type="Script" path="res://Scripts/Models/Fish.cs" id="1_p3khq"]
+
+[resource]
+script = ExtResource("1_p3khq")
+Habitat = 1
+DepthFound = 2
+Size = 1
+Name = "Blobfish"
+Description = ""
+BuyCost = 0
+SellCost = 0

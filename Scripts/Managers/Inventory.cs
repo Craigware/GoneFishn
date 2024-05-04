@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System;
+using Godot;
+using System.Reflection;
 
 namespace Items {
     public class Inventory
@@ -21,6 +24,21 @@ namespace Items {
         private List<Tool> tools = new();
         private List<InventoryItem> items = new();
         private List<KeyItem> keyItems = new();
+
+        public T[] Contains<T>(Type subInventory) {
+            List<T> occurances = new();
+            if (subInventory == typeof(Tool)) {
+                foreach(var tool in tools) {
+                    if (tool is T t) {
+                        occurances.Add(t);
+                    }
+                }
+            }
+            else if (subInventory == typeof(Item)) {}
+            else if (subInventory == typeof(KeyItem)) {}
+
+            return occurances.ToArray();
+        }
 
         public void Add(Item newItem, int amount) {
             foreach (var inventoryItem in items) {

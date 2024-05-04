@@ -41,6 +41,8 @@ namespace Fish
         [Export] public Size Size;
         [Export] public Texture Icon;
 
+        public Fish() : this("unnamed", Biome.RIVER, "description", 0, 0) {}
+
         public Fish(
             string name, 
             Biome habitat, 

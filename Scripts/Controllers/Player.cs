@@ -19,12 +19,16 @@ namespace Entity
         public long PlayerID = 1;
         [Export] public int Speed = 5;
 
+        public override void _Ready()
+        {
+            Inventory = new();
+        }
 
         public override void _Input(InputEvent @event) {
             if (Input.IsActionJustPressed("Interact")) {
                 var collider = GetNode<RayCast3D>("./InteractCheck").GetCollider();
                 if (collider is Interactable interactable) {
-                    interactable.Interact();
+                    interactable.Interact(this);
                 }
             }
         }

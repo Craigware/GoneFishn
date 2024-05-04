@@ -12,13 +12,13 @@ namespace World
 
     interface IInteractable
     {
-        void Interact();
+        void Interact(Entity.Player interactor);
     }
 
     public abstract partial class Interactable : Area3D, IInteractable
     {
         [Export] public InteractionType InteractionType;
 
-        public abstract void Interact(); 
+        public abstract void Interact(Entity.Player interactor);
     }
 }

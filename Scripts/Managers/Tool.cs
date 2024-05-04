@@ -24,10 +24,10 @@ namespace Items {
  
         private int currentDurability;
 
-        public Tool(ToolResource resource) {
+        public Tool(ToolResource resource=null) {
             Resource = resource;
             Broken = false;
-            CurrentDurability = Resource.Durrability;
+            
         }
 
         public virtual void Use() {}

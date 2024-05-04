@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Fish" load_steps=2 format=3 uid="uid://badx58ik2j50s"]
+
+[ext_resource type="Script" path="res://Scripts/Models/Fish.cs" id="1_wr8mv"]
+
+[resource]
+script = ExtResource("1_wr8mv")
+Habitat = 3
+DepthFound = 1
+Size = 1
+Name = "Pike"
+Description = ""
+BuyCost = 0
+SellCost = 0
