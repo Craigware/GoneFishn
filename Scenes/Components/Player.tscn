@@ -1,10 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://c385no1sdh8yl"]
+[gd_scene load_steps=9 format=3 uid="uid://c385no1sdh8yl"]
 
 [ext_resource type="Script" path="res://Scripts/Controllers/Player.cs" id="1_5436m"]
+[ext_resource type="Material" uid="uid://bj3o4omlg388g" path="res://Assets/Materials/yellow.tres" id="2_rlddk"]
+[ext_resource type="Material" uid="uid://b6bu2oiiqsqau" path="res://Assets/Materials/purple.tres" id="3_1jsr5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_j8e1b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g62ch"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lp4iu"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m7v68"]
+top_radius = 0.55
+bottom_radius = 0.55
+height = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ahn2o"]
+top_radius = 0.55
+bottom_radius = 0.55
+height = 0.5
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 16
@@ -12,6 +29,7 @@ script = ExtResource("1_5436m")
 
 [node name="GFX" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("2_rlddk")
 mesh = SubResource("CapsuleMesh_j8e1b")
 
 [node name="CollisionBox" type="CollisionShape3D" parent="."]
@@ -32,3 +50,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, 0, -1)
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.664448, 0, 0, 0, -0.0264705, 0.680205, 0, -0.449257, -0.040078, 0.213903, 1.26623, -0.397666)
+mesh = SubResource("CylinderMesh_lp4iu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.664448, 0, 0, 0, -0.0264705, 0.680205, 0, -0.449257, -0.040078, -0.144468, 1.26623, -0.400066)
+mesh = SubResource("CylinderMesh_lp4iu")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28658, 0)
+mesh = SubResource("CylinderMesh_m7v68")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106208, 0.305385, -0.000566483)
+material_override = ExtResource("3_1jsr5")
+mesh = SubResource("CylinderMesh_ahn2o")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.664448, 0, 0, 0, -0.449713, -0.0258123, 0, 0.0170483, -0.680896, -0.206441, -0.0402985, -0.0680473)
+material_override = ExtResource("3_1jsr5")
+mesh = SubResource("CylinderMesh_lp4iu")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.664448, 0, 0, 0, -0.449713, -0.0258123, 0, 0.0170483, -0.680896, 0.225978, -0.0402985, -0.0680473)
+material_override = ExtResource("3_1jsr5")
+mesh = SubResource("CylinderMesh_lp4iu")

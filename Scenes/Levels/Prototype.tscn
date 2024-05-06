@@ -30,7 +30,6 @@ ssao_enabled = true
 ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.03
 volumetric_fog_albedo = Color(0.752941, 0.8, 0.584314, 1)
 
@@ -41,7 +40,8 @@ volumetric_fog_albedo = Color(0.752941, 0.8, 0.584314, 1)
 [node name="Testing" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ke17u")]
-Speed = 10
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.192073, 0)
+Speed = 5
 
 [node name="World" type="Node" parent="."]
 
@@ -125,7 +125,7 @@ grow_horizontal = 2
 script = ExtResource("2_h2cu7")
 
 [node name="StaticBody3D" type="Area3D" parent="."]
-transform = Transform3D(4.53222, 0, 0, 0, 4.53222, 0, 0, 0, 4.53222, -5.78965, 0.467411, -3.96461)
+transform = Transform3D(4.53222, 0, 0, 0, 4.53222, 0, 0, 0, 4.53222, -6.22701, 0.467411, -3.96461)
 script = ExtResource("5_63ygk")
 AvaiableFish = Array[Object]([ExtResource("6_156o5"), ExtResource("7_gy6mf"), ExtResource("8_uv3l6"), ExtResource("9_o646x"), ExtResource("10_gjkgr")])
 

@@ -40,6 +40,20 @@ namespace Items {
             return occurances.ToArray();
         }
 
+        public void Add(Tool newTool) {
+            
+        }
+
+        public void Add(KeyItem newItem) {
+            if (keyItems.Contains(newItem)) return;
+            keyItems.Add(newItem);
+        }
+
+        public void Remove(KeyItem item) {
+            if (keyItems.Contains(item)) return;
+            keyItems.Remove(item);
+        }
+
         public void Add(Item newItem, int amount) {
             foreach (var inventoryItem in items) {
                 if (inventoryItem.Item == newItem) {  

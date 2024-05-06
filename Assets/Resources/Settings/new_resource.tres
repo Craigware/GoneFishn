@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ControlSettings" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Models/ControlSettings.cs" id="1_y5nlg"]
+
+[resource]
+script = ExtResource("1_y5nlg")
+CameraSensitivity = 3.17
+KeyRemaps = {
+"That": 32,
+"this": 95
+}

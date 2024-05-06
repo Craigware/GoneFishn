@@ -14,7 +14,7 @@ namespace World
 
             } else {
                 var randomInt = new Random().Next(0, AvaiableFish.Length-1);
-                Fish.Fish fish = (Fish.Fish) AvaiableFish[randomInt];
+                Fish.Fish fish = AvaiableFish[randomInt];
                 interactor.Inventory.Add(fish, 1);
             }
         }
