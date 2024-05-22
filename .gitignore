@@ -1,8 +1,6 @@
 .godot/
 # Godot 4+ specific ignores
 addons/
-hubimages/
-LICENSE
 
 # Godot-specific ignores
 .import/
