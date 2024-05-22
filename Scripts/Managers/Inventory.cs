@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using System;
 using Godot;
-using System.Reflection;
+using System.Collections.Generic;
 
 namespace Items {
     public class Inventory
@@ -17,6 +16,8 @@ namespace Items {
                 Count = count;
             }
         }
+
+        public int Wallet = 0;
 
         public List<InventoryItem> Items { get { return items; } }
         public List<KeyItem> KeyItems { get { return keyItems; } }

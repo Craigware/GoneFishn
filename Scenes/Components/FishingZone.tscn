@@ -1,0 +1,18 @@
+[gd_scene load_steps=8 format=3 uid="uid://cydsc7swa71y4"]
+
+[ext_resource type="Script" path="res://Scripts/Controllers/FishingZone.cs" id="1_8n400"]
+[ext_resource type="Resource" uid="uid://badx58ik2j50s" path="res://Assets/Resources/Fish/Freshwater/Pike.tres" id="2_66xsb"]
+[ext_resource type="Resource" uid="uid://dpcu0j8d18hmq" path="res://Assets/Resources/Fish/Saltwater/Blobfish.tres" id="3_2ju77"]
+[ext_resource type="Resource" uid="uid://bq57b71n6jl21" path="res://Assets/Resources/Fish/Saltwater/Grouper.tres" id="4_7f1vk"]
+[ext_resource type="Resource" uid="uid://d1vxkox4prcy8" path="res://Assets/Resources/Fish/Saltwater/Marlin.tres" id="5_jl2u7"]
+[ext_resource type="Resource" uid="uid://cwqt3tbi6gi0f" path="res://Assets/Resources/Fish/Brackish/RainbowTrout.tres" id="6_l50ol"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ii5p6"]
+
+[node name="FishingInteractionZone" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_8n400")
+AvaiableFish = Array[Object]([ExtResource("2_66xsb"), ExtResource("3_2ju77"), ExtResource("4_7f1vk"), ExtResource("5_jl2u7"), ExtResource("6_l50ol")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ii5p6")
