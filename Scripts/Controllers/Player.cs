@@ -16,9 +16,10 @@ namespace Entity
         }
         private string playerName;
 
-        public long PlayerID = 1;
-        public int Stamina = 100;
+        public long PlayerID = 10;
+        [Export] public int Stamina = 100;
         [Export] public int Speed = 3;
+        public bool InputDisabled = false;
 
         public override void _Ready()
         {
@@ -28,18 +29,24 @@ namespace Entity
         public override void _Input(InputEvent @event) {
             if (Input.IsActionJustPressed("Interact")) {
                 var collider = GetNode<RayCast3D>("./InteractCheck").GetCollider();
-                if (collider is Interactable interactable) {
-                    interactable.Interact(this);
-                }
+
+                if (collider is Interactable interaction) {
+                    interaction.Interact(this);
+                }              
             }
         }
 
         public override void _PhysicsProcess(double delta) {
-            
+            if (Velocity != Vector3.Zero && Input.IsActionPressed("Sprint") && Stamina > 0) {
+                Stamina--;
+            } 
+
+            if (!Input.IsActionPressed("Sprint")) {
+                Stamina++;
+            }
         }
 
-        public override void _Process(double delta)
-        {
+        public override void _Process(double delta) {
             if (Input.GetVector("Left", "Right", "Backward", "Forward") != Vector2.Zero) {
                 var vector = Input.GetVector("Left", "Right", "Forward", "Backward");
                 Vector3 xDir = vector.X * Transform.Basis.X;
@@ -47,7 +54,7 @@ namespace Entity
 
                 Vector3 direction = (xDir + zDir).Normalized();
 
-                var speed = (Input.IsActionPressed("Sprint")) ? Speed * 1.75 : Speed; 
+                var speed = (Input.IsActionPressed("Sprint") && Stamina > 0) ? Speed * 1.75 : Speed; 
 
                 Velocity = direction * (float) speed;
                 MoveAndSlide();
@@ -57,10 +64,6 @@ namespace Entity
                 var vector = Input.GetVector("CamLeft", "CamRight", "CamUp", "CamDown").Normalized();
                 Rotation += new Vector3(0, -vector.X, 0) * (float) delta * GetNode<Settings.Settings>("/root/Settings").controlSettings.CameraSensitivity;// replace 2 with camerasense
             }
-        }
-
-        public void StartFishing() {
-            
-        }
+        } 
     }
 }

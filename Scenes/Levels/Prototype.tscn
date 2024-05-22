@@ -1,21 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://cd6d5k6ppdgft"]
+[gd_scene load_steps=16 format=3 uid="uid://cd6d5k6ppdgft"]
 
 [ext_resource type="PackedScene" uid="uid://c385no1sdh8yl" path="res://Scenes/Components/Player.tscn" id="1_ke17u"]
-[ext_resource type="Material" uid="uid://c4ymyq18mksjq" path="res://Assets/Materials/Green.tres" id="2_1knkb"]
 [ext_resource type="Script" path="res://Scripts/Managers/FPS.cs" id="2_h2cu7"]
-[ext_resource type="Material" uid="uid://i58w6155caxw" path="res://Assets/Materials/Blue.tres" id="2_s808y"]
-[ext_resource type="Script" path="res://Scripts/Managers/FishingZone.cs" id="5_63ygk"]
-[ext_resource type="Resource" uid="uid://badx58ik2j50s" path="res://Assets/Resources/Fish/Freshwater/Pike.tres" id="6_156o5"]
-[ext_resource type="Resource" uid="uid://dpcu0j8d18hmq" path="res://Assets/Resources/Fish/Saltwater/Blobfish.tres" id="7_gy6mf"]
-[ext_resource type="Resource" uid="uid://bq57b71n6jl21" path="res://Assets/Resources/Fish/Saltwater/Grouper.tres" id="8_uv3l6"]
-[ext_resource type="Resource" uid="uid://d1vxkox4prcy8" path="res://Assets/Resources/Fish/Saltwater/Marlin.tres" id="9_o646x"]
-[ext_resource type="Resource" uid="uid://cwqt3tbi6gi0f" path="res://Assets/Resources/Fish/Brackish/RainbowTrout.tres" id="10_gjkgr"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_ya5e2"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_r3v3u"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_uok5h"]
+[ext_resource type="Texture2D" uid="uid://dajlgxpyommoy" path="res://Assets/Images/NormalNoise.tres" id="3_o74jf"]
+[ext_resource type="Texture2D" uid="uid://d3dk73w45fwo" path="res://Assets/Images/WaterNoise.tres" id="4_blvj8"]
+[ext_resource type="Material" uid="uid://c4ymyq18mksjq" path="res://Assets/Materials/Green.tres" id="5_0ujqw"]
+[ext_resource type="Shader" path="res://Assets/Materials/Shaders/DepthTexture.gdshader" id="6_6771o"]
+[ext_resource type="Script" path="res://Scripts/Controllers/BoatBobTest.cs" id="7_ynpmc"]
+[ext_resource type="PackedScene" uid="uid://dxc7erkxfvxvj" path="res://Assets/Models/prototypetree.fbx" id="8_jw3gu"]
+[ext_resource type="ArrayMesh" uid="uid://mik211x55yxh" path="res://Assets/Models/bo_at_v2.obj" id="11_a51ie"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_lqp1a"]
 
@@ -25,88 +18,47 @@ sky_material = SubResource("PhysicalSkyMaterial_lqp1a")
 [sub_resource type="Environment" id="Environment_sfdpd"]
 sky = SubResource("Sky_7fytp")
 ambient_light_source = 3
+reflected_light_source = 2
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
 volumetric_fog_density = 0.03
-volumetric_fog_albedo = Color(0.752941, 0.8, 0.584314, 1)
+volumetric_fog_albedo = Color(0.406464, 0.65824, 0.744392, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_in8vp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q2aag"]
+render_priority = 0
+shader = ExtResource("6_6771o")
+shader_parameter/scroll_speed = 0.1
+shader_parameter/wave_height = 0.5
+shader_parameter/water_color = Color(0, 0, 1, 1)
+shader_parameter/noise_texture = ExtResource("4_blvj8")
+shader_parameter/noise_normals = ExtResource("3_o74jf")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ii5p6"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_geltw"]
+lightmap_size_hint = Vector2i(152, 127)
+material = SubResource("ShaderMaterial_q2aag")
+size = Vector2(30, 25)
+subdivide_width = 199
+subdivide_depth = 199
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5g2xl"]
 
 [node name="Testing" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ke17u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.192073, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.307927, 0)
 Speed = 5
 
 [node name="World" type="Node" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
-transform = Transform3D(10.3336, 0, 0, 0, 1, 0, 0, 0, 9.09393, 0, 0, 0)
-material_override = ExtResource("2_1knkb")
-mesh = SubResource("PlaneMesh_ya5e2")
-skeleton = NodePath("../..")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
-transform = Transform3D(0.296526, 0.927485, 0.227691, 0.181804, -0.288875, 0.939946, 0.93756, -0.237323, -0.254279, 0.107243, 5.47138, 0.023551)
-shadow_enabled = true
-shadow_normal_bias = 3.273
-shadow_opacity = 0.79
-shadow_blur = 1.01
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World"]
-transform = Transform3D(5.60685, 0, 0, 0, 2.0751, 0, 0, 0, 3.14666, 0, 0.704909, -6.62585)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/StaticBody3D"]
-mesh = SubResource("BoxMesh_r3v3u")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D"]
-shape = SubResource("BoxShape3D_uok5h")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="World"]
-transform = Transform3D(2.17851, 0, -2.89943, 0, 2.0751, 0, 5.16632, 0, 1.22262, 4.74098, 0.526512, -4.93034)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/StaticBody3D2"]
-material_override = ExtResource("2_s808y")
-mesh = SubResource("BoxMesh_r3v3u")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D2"]
-shape = SubResource("BoxShape3D_uok5h")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="World"]
-transform = Transform3D(0.812983, 1.92519, -1.08202, -0.126936, 0.727435, 2.94612, 5.54615, -0.265556, 0.226036, -3.35591, 0.526512, -5.26394)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/StaticBody3D3"]
-material_override = ExtResource("2_s808y")
-mesh = SubResource("BoxMesh_r3v3u")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D3"]
-shape = SubResource("BoxShape3D_uok5h")
-
-[node name="StaticBody3D4" type="StaticBody3D" parent="World"]
-transform = Transform3D(0.815396, 1.92546, -1.08035, 5.5085, -0.36601, -0.190491, -0.654484, -0.681684, -2.94924, -6.8221, 0.526512, 5.25727)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/StaticBody3D4"]
-mesh = SubResource("BoxMesh_r3v3u")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D4"]
-shape = SubResource("BoxShape3D_uok5h")
-
-[node name="StaticBody3D5" type="StaticBody3D" parent="World"]
-transform = Transform3D(1.04051, 1.85273, 1.2913, 5.5085, -0.36601, -0.190491, 0.102783, 0.859934, -2.86317, -5.44467, -0.13476, 2.87871)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/StaticBody3D5"]
-mesh = SubResource("BoxMesh_r3v3u")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D5"]
-shape = SubResource("BoxShape3D_uok5h")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = SubResource("Environment_sfdpd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
+transform = Transform3D(0.999999, -0.000414586, -0.00119877, 0.000414439, 1, -0.000120106, 0.00119883, 0.000119595, 0.999999, -11.1346, -1.19069, -2.00411)
+mesh = SubResource("PlaneMesh_geltw")
 
 [node name="Debug" type="Control" parent="."]
 layout_mode = 3
@@ -124,13 +76,52 @@ offset_bottom = 30.0
 grow_horizontal = 2
 script = ExtResource("2_h2cu7")
 
-[node name="StaticBody3D" type="Area3D" parent="."]
-transform = Transform3D(4.53222, 0, 0, 0, 4.53222, 0, 0, 0, 4.53222, -6.22701, 0.467411, -3.96461)
-script = ExtResource("5_63ygk")
-AvaiableFish = Array[Object]([ExtResource("6_156o5"), ExtResource("7_gy6mf"), ExtResource("8_uv3l6"), ExtResource("9_o646x"), ExtResource("10_gjkgr")])
+[node name="RichTextLabel2" type="RichTextLabel" parent="Debug"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Gone Fish'n v-0.0.0.PrototypDev"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_in8vp")
+[node name="BoAtV2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.18557e-10, -0.005, -2.18557e-10, 0, -2.18557e-10, 0.005, -0.005, 2.18557e-10, 9.55343e-18, -11.7305, -1.74594, 1.88383)
+mesh = ExtResource("11_a51ie")
+surface_material_override/0 = SubResource("StandardMaterial3D_5g2xl")
+script = ExtResource("7_ynpmc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_ii5p6")
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0126781, 0.0398369, -0.0508976)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76538, -2, -1.71277)
+size = Vector3(49, 3, 28)
+material = ExtResource("5_0ujqw")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9895, -1.02012, -1.68189)
+operation = 2
+size = Vector3(15.1846, 1.88477, 24.319)
+material = ExtResource("5_0ujqw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0323127, 0.601258, 0.798402, 0.755256, -0.537895, 0.374509, 0.654633, 0.590896, -0.471484, 0, 0, 0)
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4913, 1.48027, -8.12132)
+
+[node name="prototypetree" parent="." instance=ExtResource("8_jw3gu")]
+transform = Transform3D(2.00574, 0, 0, 0, 2.00574, 0, 0, 0, 2.00574, 1.96892, -0.404851, -1.16988)
+
+[node name="prototypetree2" parent="." instance=ExtResource("8_jw3gu")]
+transform = Transform3D(2.00574, 0, 0, 0, 2.00574, 0, 0, 0, 2.00574, -9.57564, -0.404851, -7.89025)
+
+[node name="prototypetree3" parent="." instance=ExtResource("8_jw3gu")]
+transform = Transform3D(2.00574, 0, 0, 0, 2.00574, 0, 0, 0, 2.00574, -8.81881, -0.459571, -11.2533)
+
+[node name="prototypetree4" parent="." instance=ExtResource("8_jw3gu")]
+transform = Transform3D(2.00574, 0, 0, 0, 2.00574, 0, 0, 0, 2.00574, -8.81881, -0.459571, 9.11683)
